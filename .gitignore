@@ -123,3 +123,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+config/maksimchudinov8.checkpoint
+config/maksimchudinov8_uuid_and_cookie.json
