@@ -14,12 +14,15 @@ Python3 should be already installed. Then use pip to install dependencies:
 
 
  **To fetch photos from the latest SpaceX launch:**
+ 
 `$ fetch_spacex.py`
  
  **To fetch Hubble photos:**
+ 
 `$ fetch_hubble.py`
 
 **To upload photos to your Instagram:**
+
 You need to edit .env file: 
 
 `INST_LOGIN = 'yourlogin'
