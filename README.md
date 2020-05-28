@@ -1,4 +1,5 @@
-#Space Instagram
+# Space Instagram
+
 Console app for fetching photos from SpaceX API and Hubble API and then for uploading them to Instagram
 
 #### **How to install**
