@@ -19,7 +19,7 @@ def fetch_hubble_images_by_id(id):
     extension = Path(url).suffix
     filename = f'image_{id}{extension}'
     path_to_file = Path.cwd().joinpath('images', filename)
-    download_script.download_pic(url, path_to_file)
+    service_scripts.download_pic(url, path_to_file)
     return filename, path_to_file
 
 
@@ -44,21 +44,18 @@ def get_hubble_images_id(collection):
     return ids
 
 
-def fetch_hubble_images_from_collection(collection):
+def main():
+    Path("images").mkdir(parents=True, exist_ok=True)
+    print(get_hubble_images_collections())
+    collection = input("Please, choose the collection from above: ")
     ids = get_hubble_images_id(collection)
     for id in ids:
         try:
             filename, path_to_file = fetch_hubble_images_by_id(id)
             service_scripts.resize(path_to_file)
-        except Exception:
-            print(f'While downloading pic by {id} an error occurred')
-
-
-def main():
-    Path("images").mkdir(parents=True, exist_ok=True)
-    print(get_hubble_images_collections())
-    collection = input("Please, choose the collection from above: ")
-    fetch_hubble_images_from_collection(collection)
+        except OSError:
+            Path(path_to_file).unlink()
+            continue
 
 
 if __name__ == '__main__':

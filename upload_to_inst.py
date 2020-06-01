@@ -1,8 +1,8 @@
 import instabot
-import os
-import random
 import time
+import os
 from dotenv import load_dotenv
+from pathlib import Path
 
 
 def main():
@@ -12,19 +12,15 @@ def main():
 
     bot = instabot.Bot()
     bot.login(username=username, password=password)
-
+    timeout = 30
     images = os.listdir("images")
-    print(images)
+
     for image in images:
+        path_to_file = Path.cwd().joinpath('images', image)
         try:
-            print(f'Uploading {image}.')
-            timeout = random.randint(1, 60)
-            bot.upload_photo(f'images/{image}', caption=f'This is images/{image} photo! Nice shot!')
+            bot.upload_photo(path_to_file, caption=f'This is images/{image} photo! Nice shot!')
             time.sleep(timeout)
-        except Exception:
-            print(f'Uploading {image} failed.')
-            timeout = random.randint(1, 60)
-            time.sleep(timeout)
+        except OSError:
             continue
     bot.logout()
 
